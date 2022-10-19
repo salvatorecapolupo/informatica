@@ -13,82 +13,93 @@
   <body>
     <h1>Hello, world! :-) </h1>
 
+    <h2> Informatica - Algoritmi base </h2>
+    <ul class="list-group">
+      <li class="list-group-item"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bubblesort">
+          Bubble sort 
+    </button></li>
 
-  <h2> Informatica - Algoritmi </h2>
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#binaria">
+          Ricerca binaria
+        </button>
+    </li>
+    <li class="list-group-item">
+        
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prim">
+          Algoritmo di Prim (copertura albero)
+        </button>
 
-  <ul class="list-group">
-    <li class="list-group-item"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bubblesort">
-        Bubble sort 
-  </button></li>
+  </li>
+
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dijkstra">
+          Algoritmo di Dijkstra (cammini minimi)
+        </button>
+    </li>
+
+    <h2> Informatica - Algoritmi intermedi </h2>
+
+    <li class="list-group-item">        
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#queen">
+          Rompicapo delle otto regine (backtrack)
+        </button>
+    </li>
+
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quicksort">
+          Quick sort
+        </button>
+    </li>
+
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bfs">
+          Pathfinding (ricerca cammini di uscita)
+    </button>
+  </li>
+
   <li class="list-group-item">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#binaria">
-        Ricerca binaria
-      </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratinamaze">
+        Labirinto (backtracking)
+  </button>
 </li>
 
-<li class="list-group-item">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quicksort">
-      Quick sort
+
+    
+    <h2> Informatica - Algoritmi (molto) avanzati </h2>
+
+    <li class="list-group-item">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hanoi">
+        Torri di Hanoi
     </button>
-</li>
+  </li>
 
-
-<li class="list-group-item">
-        
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#queen">
-      Rompicapo delle otto regine (backtrack)
-    </button>
-
+  <li class="list-group-item">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deepfake">
+        Deepfake ( falsi realistici )
+  </button>
 </li>
 
 <li class="list-group-item">
-        
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dijkstra">
-            Algoritmo di Dijkstra (cammini minimi)
-          </button>
-
-    </li>
-    <li class="list-group-item">
-        
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prim">
-            Algoritmo di Prim (copertura albero)
-          </button>
-
-    </li>
-    <li class="list-group-item">
-        
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bfs">
-            Pathfinding (ricerca cammini di uscita)
-      </button>
-
-    </li>
-
-    <li class="list-group-item">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratinamaze">
-            Labirinto (backtracking)
-      </button>
-    </li>
-
-    <li class="list-group-item">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hanoi">
-            Torri di Hanoi
-      </button>
-    </li>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#multidimensionale">
+      Rappresentazione di spazi con più di 3 dimensioni
+</button>
+</li>
 
   </ul>
 
-    <!-- hanoi - modal -->
-    <div class="modal fade" id="hanoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- multidimensionale - modal -->
+      <div class="modal fade" id="deepfake" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content"> 
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"> Problema delle Torri di Hanoi </h5>
+              <h5 class="modal-title" id="exampleModalLabel"> Deepfake </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body"> 
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/YstLjLCGmgg?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/lnUbEPFlgKA?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
@@ -96,6 +107,46 @@
           </div>
         </div>
       </div>
+  
+    <!-- multidimensionale - modal -->
+    <div class="modal fade" id="multidimensionale" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Visualizzare spazi a più di te dimensioni usando la AI </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"> 
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/wvsE8jm1GzE?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- hanoi - modal -->
+    <div class="modal fade" id="hanoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Problema delle Torri di Hanoi </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"> 
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/YstLjLCGmgg?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+          </div>
+        </div>
+      </div>
+    </div>
   
       
 <!-- maze - modal -->
@@ -123,7 +174,7 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> tecnica base di backtracking </h5>
+          <h5 class="modal-title" id="exampleModalLabel"> Tecnica base di backtracking </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -230,10 +281,10 @@
           <h5 class="modal-title" id="exampleModalLabel"> BTS (Breadth First Search) - Ricerca in profondità su un grafo </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> 
         </div>
         <div class="modal-body"> 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/EFg3u_E6eHU?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/oDqjPvD54Ss?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
