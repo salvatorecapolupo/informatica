@@ -1,156 +1,151 @@
+## 🕹️ CODEX CHALLENGE: I Cinque Livelli
 
-## 💾 IL DUNGEON DEI DEBUG
+### LIVELLO 1: L'Ordigno Temporale (Operatori `++` e `x++`)
 
-Sei un **Debug Master** e devi navigare attraverso un dungeon pieno di codici "buggati" (difettosi). Ogni stanza richiede l'uso corretto di una competenza specifica di C++ (quella degli esercizi) per risolvere un enigma e procedere.
+**Scenario:** Devi disinnescare un ordigno impostando la variabile `Chiave` al valore corretto. Il tempo scorre in modo non lineare a causa di un *bug* nel clock.
 
-### 🔑 LIVELLO 1: La Porta a Incremento (Competenza: Operatori `++`)
-
-**Scenario:** Ti trovi di fronte a una porta che si apre solo se il tuo "Contatore Accessi" raggiunge esattamente **4**. Il sistema operativo del dungeon, però, usa gli operatori di incremento in modo confuso.
-
-**Il Codice della Porta:**
+**Codice da Decifrare:**
 
 ```cpp
-int Contatore_Accessi = 0;
-// Il sistema esegue queste 4 operazioni in sequenza:
-Contatore_Accessi += Contatore_Accessi++; 
-Contatore_Accessi += Contatore_Accessi;
-Contatore_Accessi += Contatore_Accessi;
-Contatore_Accessi += ++Contatore_Accessi; 
+int x = 5;
+int Chiave = 0;
+
+Chiave += x;
+Chiave += x++; 
+Chiave += ++x;
+Chiave += x;
+
+// Il disinnesco avviene se Chiave è uguale al valore finale di X.
 ```
 
-**Il Tuo Compito (Debug):**
-Prima di far partire il codice, devi impostare il valore iniziale di `Contatore_Accessi` (al posto di `0`) affinché il risultato finale sia **4**.
-
-**Riflessione sulla Competenza:**
-Devi capire la differenza cruciale tra il **post-incremento (`x++`)**, che usa il valore *prima* di incrementare, e il **pre-incremento (`++x`)**, che incrementa il valore *prima* di usarlo. Quale valore scegli?
-
-**Scelta:**
-[A] 1
-[B] 2
-[C] 0 (lasciare così)
-
-**Svolgimento Logico (per la risposta corretta):**
-Se imposti `Contatore_Accessi` a **1** (Opzione A):
-
-1.  $Contatore\_Accessi = 1$. $\rightarrow Contatore\_Accessi += 1++$; (Usa 1, poi $C$ diventa 2). $C = 1+1=2$.
-2.  $Contatore\_Accessi += 2$; $\rightarrow C = 2+2=4$.
-3.  $Contatore\_Accessi += 4$; $\rightarrow C = 4+4=8$.
-4.  $Contatore\_Accessi += ++8$; $\rightarrow C = 8+9=17$. (**Sbagliato**)
-
-Se imposti `Contatore_Accessi` a **0** (Opzione C):
-
-1.  $Contatore\_Accessi = 0$. $\rightarrow Contatore\_Accessi += 0++$; (Usa 0, poi $C$ diventa 1). $C = 0+0=0$.
-2.  $Contatore\_Accessi += 0$; $\rightarrow C = 0+0=0$.
-3.  $Contatore\_Accessi += 0$; $\rightarrow C = 0+0=0$.
-4.  $Contatore\_Accessi += ++0$; $\rightarrow C = 0+1=1$. (**Sbagliato**)
-
-Se imposti `Contatore_Accessi` a **2** (Opzione B):
-
-1.  $Contatore\_Accessi = 2$. $\rightarrow Contatore\_Accessi += 2++$; (Usa 2, poi $C$ diventa 3). $C = 2+2=4$.
-2.  $Contatore\_Accessi += 4$; $\rightarrow C = 4+4=8$.
-3.  $Contatore\_Accessi += 8$; $\rightarrow C = 8+8=16$.
-4.  $Contatore\_Accessi += ++16$; $\rightarrow C = 16+17=33$. (**Sbagliato**)
-
-**Nuova Traccia più Semplice (per non bloccare il gioco):**
-**Il Codice della Porta (Revisione Semplificata):**
-
-```cpp
-int Contatore_Accessi = 0;
-// Il sistema esegue:
-Contatore_Accessi = Contatore_Accessi + ++Contatore_Accessi; 
-// Risultato desiderato: 4
-```
-
-**La tua Scelta (Revisione):**
-[A] 1
-[B] 2
-[C] 3
-
-**Svolgimento Logico (Revisione):**
-Se scegli **2** (Opzione B):
-
-1.  $C = 2$. `++C` fa diventare $C=3$ e restituisce 3.
-2.  $C = 2 + 3 = 5$. (**Sbagliato**)
-
-Se scegli **1** (Opzione A):
-
-1.  $C = 1$. `++C` fa diventare $C=2$ e restituisce 2.
-2.  $C = 1 + 2 = 3$. (**Sbagliato**)
-
-Se scegli **3** (Opzione C):
-
-1.  $C = 3$. `++C` fa diventare $C=4$ e restituisce 4.
-2.  $C = 3 + 4 = 7$. (**Sbagliato**)
-
-**Problema:** Senza usare più di una linea, è difficile raggiungere un target specifico a meno di non conoscere i side-effect. Riadattiamo la competenza alla narrativa.
-
-**RISULTATO LIVELLO 1:** Hai superato la porta comprendendo che l'uso incrociato di pre e post-incremento (come nell'esercizio originale) richiede un'analisi attenta dei **side-effects** (`++x` vs `x++`) in una singola espressione.
+**Obiettivo:** Qual è il **valore finale** della variabile `x` al termine della sequenza e qual è il **valore finale** di `Chiave`? I due valori sono identici? Se no, l'ordigno esplode\!
 
 -----
 
-### ⚙️ LIVELLO 2: L'Enigma della Precisione (Competenza: Casting)
+### LIVELLO 2: Il Raggio Deviato (Tipi di Dato e Casting)
 
-**Scenario:** Devi attivare un ponte levatoio. Il sistema richiede che la media calcolata tra due variabili (Peso e Forza) sia un numero **esattamente intero**.
+**Scenario:** Un cannone laser deve colpire un bersaglio alla coordinata 4.333. La sua potenza è gestita da due variabili intere.
 
-**Le Variabili in gioco:**
+**Dati Input:**
 
-  * `int Peso = 10;`
-  * `int Forza = 3;`
+  * `int Potenza = 13;`
+  * `int Distanza = 3;`
 
-**Il Codice Attuale (che NON funziona):**
+**L'Errore:**
+Il laser usa l'espressione `Potenza / Distanza` e, a causa della divisione intera, colpisce solo la coordinata 4, mancando il bersaglio.
+
+**Obiettivo:** Riscrivi l'espressione per il calcolo della coordinata usando il **Casting** in modo che il risultato sia **4.333...** e non 4.
+
+-----
+
+### LIVELLO 3: L'Archivio Sigillato (Condizioni Logiche `&&`, `||`)
+
+**Scenario:** Un archivio segreto è protetto da un triplo lucchetto logico. Il lucchetto si apre solo se la condizione finale dell'istruzione `if` risulta **TRUE**.
+
+**Il Criterio di Sblocco:**
 
 ```cpp
-// Media Attuale:
-double Risultato = Peso / Forza;
+bool Lucchetto_A = (a > 10);
+bool Lucchetto_B = (b != a);
+bool Lucchetto_C = (c % 2 == 0); // c è pari
+
+if ( (Lucchetto_A || Lucchetto_B) && !Lucchetto_C ) {
+    // Apri Archivio
+}
 ```
 
-**Risultato:** $10 / 3 = 3$. Il compilatore esegue la divisione intera prima di assegnare il valore a `Risultato`, ottenendo `3.0`. Il sistema del ponte si blocca perché vuole il risultato della divisione reale.
-
-**Il Tuo Compito (Debug):**
-Modifica l'espressione `Peso / Forza` usando il **Casting** in modo che la divisione eseguita sia una **divisione in virgola mobile** (cioè **3.333...**), ottenendo la precisione corretta che il ponte si aspetta.
-
-**Riflessione sulla Competenza:**
-Quando la divisione è tra due tipi interi (`int`), il risultato è sempre intero. Per forzare un calcolo in virgola mobile (`double`), devi convertire *almeno uno* degli operandi.
-
-**Scelta:**
-[A] `(int)Peso / Forza`
-[B] `(double)Peso / Forza`
-[C] `Peso / (int)Forza`
-
-**Risposta Corretta:**
-**[B] (double)Peso / Forza.** Convertendo `Peso` a `double`, il compilatore esegue la promozione di tipo anche su `Forza`, garantendo la divisione reale.
-
-**RISULTATO LIVELLO 2:** Il ponte levatoio si estende. Hai superato l'enigma della precisione dimostrando di saper usare il **Casting** per manipolare i tipi di dato e ottenere risultati decimali.
+**Obiettivo:** Fornisci **tre numeri interi (a, b, c)** che soddisfino la condizione di sblocco (rendendo la condizione `TRUE`).
 
 -----
 
-### 🔑 LIVELLO 3: La Scatola Magica (Competenza: Ciclo `While` e Cifre)
+### LIVELLO 4: La Cripta delle Cifre (Ciclo `While` e `%`/`/`)
 
-**Scenario:** Hai trovato una "Scatola di Sblocco" che si apre solo se inserisci un PIN di quattro cifre la cui **somma delle cifre è maggiore di 20**.
+**Scenario:** Una cripta si sblocca solo quando la **somma delle cifre** del PIN a 5 cifre inserito è un **numero primo** e **maggiore di 30**.
 
-**Il Codice di Sblocco:**
-Il codice usa il ciclo `while` e gli operatori `% 10` e `/ 10` (come nell'Esercizio 4) per verificare la somma.
+**Meccanismo di Verifica:**
+Il sistema usa un ciclo `while` per eseguire l'algoritmo di somma delle cifre (`% 10` e `/ 10`).
 
-**Il Tuo Compito (Logica):**
-Quale PIN devi inserire per soddisfare la condizione (Somma Cifre $> 20$)?
-
-**Riflessione sulla Competenza:**
-Devi applicare mentalmente la logica del ciclo `while` (che scompone il numero in singole cifre e le somma) per trovare un numero che dia la somma desiderata.
-
-**Scelta:**
-[A] 4519
-[B] 5937
-[C] 9091
-
-**Svolgimento Logico (per la risposta corretta):**
-
-  * [A] 4519 $\rightarrow 4+5+1+9 = 19$. (Non sblocca)
-  * **[B] 5937** $\rightarrow 5+9+3+7 = 24$. (**Sblocca**)
-  * [C] 9091 $\rightarrow 9+0+9+1 = 19$. (Non sblocca)
-
-**RISULTATO LIVELLO 3:** La scatola si apre, rivelando il tuo percorso. 
-Hai sbloccato il meccanismo dimostrando una profonda comprensione della **logica dei cicli** per la manipolazione delle cifre.
+**Obiettivo:** Qual è il **più grande** numero intero a 5 cifre che puoi inserire (es. 9xxxx) che soddisfi la condizione di sblocco?
 
 -----
 
-*(Puoi continuare a generare nuovi livelli focalizzati sulle condizioni `if`, array/cicli `for` e altre competenze, mantenendo questo schema narrativo.)*
+### LIVELLO 5: Il Vettore Infiltrato (Ciclo `For` e Array)
+
+**Scenario:** Sei alla guida di un sistema di filtraggio dei dati. Devi isolare i "record maligni" (numeri negativi) dall'array `Dati` in modo efficiente.
+
+**Dati Iniziali:**
+
+```cpp
+int Dati[] = {15, -8, 20, -12, 5, -1, 0, 7};
+```
+
+**Il Tuo Filtro:**
+Scrivi la **sola condizione `if`** che, all'interno di un ciclo `for` standard, stamperà **solo** i numeri negativi e **salterà** l'elemento zero.
+
+**Obiettivo:** Quale sequenza di numeri verrà stampata? E qual è la condizione `if` minimale che lo garantisce?
+
+## 🧩 Micro-Esercizio 6: L'Imbroglio dell'Assegnazione Multipla
+
+**Traccia:**
+Osserva il seguente frammento di codice. Quale sarà il valore finale della variabile `risultato` e, crucialmente, quale sarà il valore finale della variabile `x`?
+
+```cpp
+int x = 5;
+int y = 10;
+int risultato = 0;
+
+risultato += (x++) * 2; // Operazione 1
+risultato += (++y) / 3; // Operazione 2 (divisione intera)
+risultato += x;         // Operazione 3
+
+// Qual è il risultato finale?
+```
+
+**Punto Chiave:**
+Concentrati sull'ordine di esecuzione degli operatori di incremento/decremento (`++` postfisso e prefisso) e come influenzano i valori nelle espressioni successive.
+
+-----
+
+## 🧪 Micro-Esercizio 7: La Trappola della Precisione (Floating Point)
+
+**Traccia:**
+Analizza il seguente codice C++. Quale tra i tre messaggi verrà stampato in output? Spiega la logica dietro la condizione che *potrebbe* non risultare come ci si aspetterebbe matematicamente.
+
+```cpp
+double A = 10.0;
+int B = 3;
+
+if ( (int)(A / B) == 3 && (A / B) * B == 10.0) {
+    cout << "Errore di precisione evitato" << endl;
+} else if ( (int)(A / B) == 3 ) {
+    cout << "Precisione imperfetta, ma ok" << endl;
+} else {
+    cout << "Errore di logica" << endl;
+}
+```
+
+**Punto Chiave:**
+Questa sfida mette in gioco la **comparazione di numeri in virgola mobile** (`double`). Devi capire perché $10.0 / 3.0 \times 3$ potrebbe non essere esattamente $10.0$ a causa della rappresentazione binaria in memoria.
+
+-----
+
+## 🪢 Micro-Esercizio 8: La Deformazione dell'Indice
+
+**Traccia:**
+Il ciclo `for` seguente non solo scorre l'array, ma manipola la sua stessa variabile contatore (`i`) all'interno del corpo. Quale sarà l'esatta sequenza di numeri stampati in output?
+
+```cpp
+int dati[] = {1, 2, 3, 4, 5, 6}; // Array di 6 elementi
+
+for (int i = 0; i < 6; i++) {
+    int valore = dati[i];
+    
+    cout << valore << " "; 
+    
+    // L'operatore ternario modifica l'indice 'i'
+    i = (valore % 2 != 0) ? i + 1 : i; 
+}
+```
+
+**Punto Chiave:**
+Segui attentamente il flusso: l'indice `i` viene letto, l'elemento è stampato, l'indice `i` viene modificato dal ternario, e *infine* l'indice viene incrementato dal `i++` nel blocco `for` prima della successiva iterazione.
