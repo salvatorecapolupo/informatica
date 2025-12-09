@@ -1,2 +1,3 @@
-# informatica
-Supporto didattico per TPSIT, sistemi e reti, informatica
+# Esercizi svolti in C++
+Apprendimento progressivo e mediante esempi
+Utile per il potenziamento
